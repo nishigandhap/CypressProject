@@ -1,4 +1,14 @@
 class TeamCreation {
+    constructor() {
+   
+        this.teamName
+    }
+    captureTeamName() {
+        cy.get('input[data-test="input"]').type('Sigma').invoke('val').then(function (teamNameText) {
+            this.teamName = teamNameText
+            cy.log(this.teamName)
+        })
+    }
 
     compareTeamName() {
         return cy.get('.row-row').find('span').last().invoke('text').then(function (teamNameList) {
@@ -6,17 +16,5 @@ class TeamCreation {
             cy.log(this.teamName)
         })
     }
-
-
-    compareChannelName() {
-
-        return cy.get('.setting-sidebar-list').find('li').last().invoke('text').then(function (channelNameList) {
-            expect(channelNameList.trim()).is.equal(this.channelName)
-            cy.log(this.channelName)
-        })
-
-
-    }
-
 }
 export default TeamCreation;
