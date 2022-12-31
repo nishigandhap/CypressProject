@@ -12,7 +12,7 @@ module.exports = defineConfig({
   env: {
     url: 'https://app.trengo.com/auth/login'
   },
-  defaultCommandTimeout: 3000,
+  defaultCommandTimeout: 5000,
   },
 });
 
