@@ -38,45 +38,7 @@ describe('My first test suite', function () {
         cy.get('.row-inner').find('a[class*="ml-2 flex items-center"]').contains('Back to overview').click()
         cy.get('.settings-landing-title').should('contain.text', 'Custom channel')
         this.channelName.compareChannelName(this.channelName)
-
     })
-    it.only('Keep the internal name field empty and check the error message is displayed', function () {
-        this.channelName = new TeamCreation()
-        cy.visit(Cypress.env("url"))
-        cy.get('input[name="email"]').type(this.loginPage.userName)
-        cy.get('input[name="password"]').type(this.loginPage.password)
-        cy.get('button[type="submit"]').click()
-        cy.get('a[data-test="main-navigation-settings"]').click()
-        cy.get('div[class*="t-text-mobile"]:visible').contains('Settings')
-        cy.get('div[class^="sidebar"]').contains('Channels').click()
-        cy.get('a').find('span:visible').contains('Custom').click()
-        cy.get('.settings-landing-title').should('contain.text', 'Custom channel')
-        cy.get('button[type="submit"]:visible').contains('add').click()
-        cy.get('.form-control:visible').clear()
-       // cy.contains('Create channel').click()
-
-        cy.intercept({
-            method: 'PUT',
-            url: 'https://app.trengo.com/api/v2/channels/1108269'
-        },
-            {
-                statusCode: 422,
-                message: "The given data was invalid."
-            }
-        ).as('errorMessage')
-        cy.contains('Create channel').click()
-        //cy.wait('@errorMessage')
-
-
-
-
-        // cy.contains('@errorMessage', 'The given data was invalid.')
-
-    })
-
-
-
-
 
     it('Create team channel and verify the team name is populate on the dashboard', function () {
         this.teamName = new TeamCreation()
