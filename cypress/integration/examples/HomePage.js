@@ -15,7 +15,7 @@ describe('My first test suite', function () {
             this.loginPage = data
         })
     })
-    it('End-to-End create custom channel and verified the channel is displayed on the dashboard', function () {
+    it('Create custom channel and verify the channel is displayed on the dashboard', function () {
         cy.visit(Cypress.env("url"))
         cy.get('input[name="email"]').type(this.loginPage.userName)
         cy.get('input[name="password"]').type(this.loginPage.password)
@@ -24,7 +24,7 @@ describe('My first test suite', function () {
         cy.wait(2000)
         settingsPage.mainAppSideBar('Channels', 'Custom')
         cy.get('.settings-landing-title').should('contain.text', 'Custom channel')
-       cy.get('button[type="submit"]:visible').contains('add').click()
+        cy.get('button[type="submit"]:visible').contains('add').click()
         channelName.captureChannelName()
         cy.get('.box:visible').find('h2').contains('Access')
         cy.get('.multiselect__tag:visible').find('span').should('have.text', 'Test')
@@ -99,6 +99,6 @@ describe('My first test suite', function () {
         cy.get('.settings-landing-title').should('contain.text', 'Custom channel')
         cy.get('.row-row').contains(this.channelNameText).click()
         cy.get('.multiselect__select').first().click()
-        cy.get('.multiselect__element:visible').find('span').should('not.have.value',this.teamName)
+        cy.get('.multiselect__element:visible').find('span').should('not.have.value', this.teamName)
     })
 })
